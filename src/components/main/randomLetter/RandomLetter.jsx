@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
+import { ResetBox } from "../../reset/ResetBox";
 import {
   NewRandomLetterButton,
   PickedLettersBox,
   RandomLetterBox,
   RandomLetterText,
+  ResetButton,
   SinglePickedLetter,
 } from "./randomLetter.styled";
 
@@ -42,10 +44,6 @@ export const RandomLetter = () => {
     }
     const newChar = randomLetterGenerator();
     console.count(newChar);
-    // if (pickedChars.includes(newChar)) {
-    //   // setNewRandomLetter(randomLetter());
-    //   return handleNewChar();
-    // }
     setNewRandomChar(newChar);
     if (newRandomChar === "...") {
       return;
@@ -64,11 +62,12 @@ export const RandomLetter = () => {
   return (
     <>
       <RandomLetterBox>
+        <ResetBox />
         <RandomLetterText>{newRandomChar}</RandomLetterText>
         <NewRandomLetterButton onClick={handleNewChar}>
           Nueva Letra
         </NewRandomLetterButton>
-        <button onClick={handleReset}>RESET</button>
+        <ResetButton onClick={handleReset}>RESET</ResetButton>
         <h2>HISTORIAL</h2>
         {allPickedRandomChars.length ? (
           <>
