@@ -30,6 +30,7 @@ const randomLetterGenerator = () => {
 export const RandomLetter = () => {
   const [pickedChars, setPickedChars] = useState([]);
   const [newRandomChar, setNewRandomChar] = useState("...");
+  const [isReset, setIsReset] = useState(false);
 
   useEffect(() => {}, [pickedChars]);
 
@@ -62,19 +63,22 @@ export const RandomLetter = () => {
   return (
     <>
       <RandomLetterBox>
-        <ResetBox />
+        {isReset && (
+          <ResetBox setIsReset={setIsReset} handleReset={handleReset} />
+        )}
+
         <RandomLetterText>{newRandomChar}</RandomLetterText>
         <NewRandomLetterButton onClick={handleNewChar}>
           Nueva Letra
         </NewRandomLetterButton>
-        <ResetButton onClick={handleReset}>RESET</ResetButton>
+        <ResetButton onClick={() => setIsReset(true)}>RESET</ResetButton>
         <h2>HISTORIAL</h2>
         {allPickedRandomChars.length ? (
           <>
             <PickedLettersBox>{allPickedRandomChars}</PickedLettersBox>
           </>
         ) : (
-          <p>Aun no hay historial!</p>
+          <p>Aún no hay historial!</p>
         )}
       </RandomLetterBox>
     </>

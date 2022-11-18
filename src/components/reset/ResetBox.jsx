@@ -6,14 +6,25 @@ import {
   ResetText,
 } from "./restet.styled";
 
-export const ResetBox = (handleSi, handleNo) => {
+export const ResetBox = ({ setIsReset, handleReset }) => {
+  const handleSi = () => {
+    setIsReset(false);
+    handleReset();
+    console.log("yes");
+  };
+
+  const handleNo = () => {
+    setIsReset(false);
+    console.log("no");
+  };
+
   return (
     <ResetBoxMain>
       <ResetConfirmBox>
         <ResetText>¿Confirmas que deseas hacer RESET?</ResetText>
         <ResetButtonsBox>
           <ResetButton onClick={handleSi}>SI</ResetButton>
-          <ResetButton onclick={handleNo}>NO</ResetButton>
+          <ResetButton onClick={handleNo}>NO</ResetButton>
         </ResetButtonsBox>
       </ResetConfirmBox>
     </ResetBoxMain>
